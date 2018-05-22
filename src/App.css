@@ -1,9 +1,16 @@
 .App {
-	text-align: center;
-	width: 200px;
-	margin: 0 auto;
+  text-align: center;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .App > form > * {
-	margin: 10px;
+  margin: 10px;
+}
+
+.App > form {
+  top: 30%;
+  position: absolute;
+  width: 200px;
+  transform: translateY(-50%);
 }

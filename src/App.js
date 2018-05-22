@@ -3,36 +3,32 @@ import "./App.css";
 //component
 import Checkbox from "./component/Checkbox";
 
-
 class App extends Component {
   constructor(props) {
-		super(props);
+    super(props);
 
-		setInterval(() => {
-			this.setState({
-				currentDate:getDate()
-			})
-		}, 1000)
+    setInterval(() => {
+      this.setState({
+        currentDate: getDate()
+      });
+    }, 1000);
 
-		this.state = {
-			currentDate: getDate()
-		};
-
-	}
-	componentWillUnmount(){
-		alert("test");
-		clearInterval(this.id);
-	}
+    this.state = {
+      currentDate: getDate()
+    };
+  }
+  componentWillUnmount() {
+    alert("test");
+    clearInterval(this.id);
+  }
 
   sendForm(event) {
     event.preventDefault();
     console.log(event);
-		console.log(this);
-
+    console.log(this);
   }
 
   render() {
-
     return (
       <div className="App">
         <form onSubmit={this.sendForm.bind(this)}>
@@ -45,7 +41,7 @@ class App extends Component {
             placeholder="Confirm Password"
             type="password"
           />
-					<Checkbox />
+          <Checkbox />
           <button type="confirm">Accept</button>
         </form>
       </div>
@@ -55,12 +51,11 @@ class App extends Component {
 
 export default App;
 
-
 function getDate() {
-	var data = new Date();
-	data = data.toISOString()
-	data = data.replace("T", " ");
-	data = data.replace(/\..{1,}/, "");
-	// data = data.toLocaleTimeString();
-	return data
+  var data = new Date();
+  data = data.toISOString();
+  data = data.replace("T", " ");
+  data = data.replace(/\..{1,}/, "");
+  // data = data.toLocaleTimeString();
+  return data;
 }

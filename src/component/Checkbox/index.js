@@ -11,9 +11,9 @@ class Checkbox extends Component {
   }
 
   helperClick(checked) {
-    this.setState = {
-      checked
-    };
+    this.setState({
+      checked: !this.state.checked
+    });
   }
 
   render() {
@@ -21,7 +21,7 @@ class Checkbox extends Component {
     return (
       <div className="custom-checkbox">
         <span
-          onClick={() => this.helperClick(!checked)}
+          onClick={() => this.helperClick(checked)}
           className={checked ? "active" : ""}
         />
       </div>
