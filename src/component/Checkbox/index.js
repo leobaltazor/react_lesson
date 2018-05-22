@@ -24,6 +24,9 @@ class Checkbox extends Component {
           onClick={() => this.helperClick(checked)}
           className={checked ? "active" : ""}
         />
+        <p onClick={() => this.helperClick(checked)}>
+          I agree to the Terms of Use and Privacy Policy
+        </p>
       </div>
     );
   }
