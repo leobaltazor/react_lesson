@@ -1,0 +1,31 @@
+.custom-checkbox 
+	position: relative
+	display: flex
+	flex-direction: row
+	span 
+		position: relative
+		color: blue
+		display: block
+		font-size: 20px
+		width: 1.7em
+		height: 1.2em
+		border: 1px solid black
+		border-radius: 0.2em
+		box-shadow: 1px 1px 1px 0px rgba(50, 150, 255, 0.75)
+		margin: 0 auto
+		cursor: pointer
+		margin-right: 5px
+		&::after 
+			content: "-"
+			transform: translate(-50%, -50%)
+			/* transform: rotateX(-45deg) */
+			top: 50%
+			left: 50%
+			position: absolute
+		&.active::after
+			content: "v"
+	p 
+		font-size: 0.9em
+		cursor: pointer
+
+
