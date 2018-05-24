@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 //component
 import Checkbox from "./component/Checkbox";
+import Input from "./component/Input";
 
 class App extends Component {
   constructor(props) {
@@ -27,8 +28,15 @@ class App extends Component {
     console.log(event);
     console.log(this);
   }
+  newMailValue = (val, status) => console.log(val, status);
 
   render() {
+    const options = {
+      regExp: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      err: "Mail invalid",
+      endWrite: this.newMailValue,
+      placeholder: "Custom Input"
+    };
     return (
       <div className="App">
         <form onSubmit={this.sendForm.bind(this)}>
@@ -41,7 +49,11 @@ class App extends Component {
             placeholder="Confirm Password"
             type="password"
           />
-          <Checkbox />
+          <Input {...options} />
+          <Checkbox
+            label="I agree to the Terms of Use and Privacy Policy"
+            change={val => console.log("curr state", val)}
+          />
           <button type="confirm">Accept</button>
         </form>
       </div>

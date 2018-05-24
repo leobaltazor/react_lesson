@@ -8,25 +8,24 @@ class Checkbox extends Component {
     this.state = {
       checked: true
     };
+    console.log(props);
   }
 
   helperClick(checked) {
-    this.setState({
-      checked: !this.state.checked
-    });
+    this.setState({ checked });
+    this.props.change(checked);
   }
 
   render() {
-    let checked = this.state.checked;
+    let { checked } = this.state;
+    const { label } = this.props;
     return (
       <div className="custom-checkbox">
         <span
-          onClick={() => this.helperClick(checked)}
+          onClick={() => this.helperClick(!checked)}
           className={checked ? "active" : ""}
         />
-        <p onClick={() => this.helperClick(checked)}>
-          I agree to the Terms of Use and Privacy Policy
-        </p>
+        <p onClick={() => this.helperClick(!checked)}>{label}</p>
       </div>
     );
   }

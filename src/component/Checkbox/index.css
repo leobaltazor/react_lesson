@@ -10,21 +10,28 @@
   position: absolute;
 }
 
-span {
+.custom-checkbox span {
   position: relative;
   color: blue;
   display: block;
   font-size: 20px;
-  width: 1em;
-  height: 1em;
+  width: 1.7em;
+  height: 1.2em;
   border: 1px solid black;
   border-radius: 0.2em;
   box-shadow: 1px 1px 1px 0px rgba(50, 150, 255, 0.75);
   margin: 0 auto;
-  cursor: pointer;
+	cursor: pointer;
+	margin-right: 5px;
 }
 
-p {
-  font-size: 0.8em;
+.custom-checkbox p {
+  font-size: 0.9em;
   cursor: pointer;
+  display: flex;
+}
+.custom-checkbox {
+  position: relative;
+display: flex;
+  flex-direction: row;
 }
