@@ -12,7 +12,7 @@ class Input extends Component {
   blur = () => {
     const { text } = this.state;
     let { validateStatus } = this.state;
-    const { regExp, endWrite} = this.props;
+    const { regExp, endWrite } = this.props;
     if (this.props.regExp) {
       validateStatus = regExp.test(text);
       this.setState({ validateStatus });
@@ -20,9 +20,8 @@ class Input extends Component {
     endWrite && endWrite(text, validateStatus);
   };
   helperInput = e => {
-		this.setState({ text: e.target.value });
-		// console.log(e.target.value);
-		
+    this.setState({ text: e.target.value });
+    // console.log(e.target.value);
   };
   render() {
     const { placeholder, err } = this.props;

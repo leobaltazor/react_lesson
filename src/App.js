@@ -3,6 +3,7 @@ import "./App.css";
 //component
 import Checkbox from "./component/Checkbox";
 import Input from "./component/Input";
+import Select from "./component/Select";
 
 class App extends Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class App extends Component {
             placeholder="Confirm Password"
             type="password"
           />
+          <Select />
           <Input {...options} />
           <Checkbox
             label="I agree to the Terms of Use and Privacy Policy"
