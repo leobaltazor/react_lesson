@@ -4,6 +4,7 @@ import "./App.css";
 import Checkbox from "./component/Checkbox";
 import Input from "./component/Input";
 import Select from "./component/Select";
+import dat from "./component/Select/CPU_serv.js";
 
 class App extends Component {
   constructor(props) {
@@ -30,13 +31,20 @@ class App extends Component {
     console.log(this);
   }
   newMailValue = (val, status) => console.log(val, status);
+  newSelectValue = (val) => console.log(val);
 
   render() {
     const options = {
+		// eslint-disable-next-line
       regExp: /^(([^<>()\[\]\/\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       err: "Mail invalid",
       endWrite: this.newMailValue,
       placeholder: "Custom Input"
+    };
+    const optionSelect = {
+	  size: 10,
+	  dat: dat,
+	  endSelect: this.newSelectValue
     };
     return (
       <div className="App">
@@ -50,7 +58,8 @@ class App extends Component {
             placeholder="Confirm Password"
             type="password"
           />
-          <Select />
+          <Select {...optionSelect} />
+          <Select {...optionSelect} />
           <Input {...options} />
           <Checkbox
             label="I agree to the Terms of Use and Privacy Policy"

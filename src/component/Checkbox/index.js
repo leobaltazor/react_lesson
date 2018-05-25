@@ -8,7 +8,6 @@ class Checkbox extends Component {
     this.state = {
       checked: true
     };
-    console.log(props);
   }
 
   helperClick(checked) {

@@ -1,6 +1,6 @@
 export default [
 {
-  "index":"1",
+  "index":"",
   "manufacturerCPU":"INTEL",
   "seriesCPU":"Atom",
   "modelCPU":"Atom 230 (Silverthorne)",
