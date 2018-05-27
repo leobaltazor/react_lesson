@@ -6,7 +6,7 @@ class Checkbox extends Component {
     super(props);
 
     this.state = {
-      checked: true
+      checked: false
     };
   }
 

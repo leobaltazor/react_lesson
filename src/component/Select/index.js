@@ -7,29 +7,28 @@ class Select extends Component {
     this.state = {
       size: 1,
       value: "Select Value",
+      searchTarget: "",
       dat: this.props.dat
     };
   }
   onFocus = e => {
     this.setState({
-	  size: this.props.size
-	});
+      size: this.props.size
+    });
   };
-  blur = () => {
+  blur = e => {
     const { endSelect } = this.props;
     let { value } = this.state;
     this.setState({
-	  size: 1,
+      size: 1
     });
     endSelect && endSelect(value);
+    this.lostFocus();
   };
   optionInject(el) {
     return el.map(el => {
       return (
-        <option
-          key={el.index.toString()}
-          value={el.index ? el.index : el.model}
-        >
+        <option key={el.index.toString()} value={el.modelCPU}>
           {el.modelCPU}
         </option>
       );
@@ -47,27 +46,28 @@ class Select extends Component {
       return serchValue.indexOf(searchTarget) !== -1;
     });
     this.setState({
-      dat: showedOptions
+      dat: showedOptions,
+      searchTarget: searchTarget
     });
-    console.log(dat);
-    console.log(searchTarget);
   }
-  da(da) {
+  lostFocus() {
+    let { value } = this.state;
     this.setState({
-      dat: da
+      searchTarget: value
     });
   }
   render() {
-    const { dat } = this.props;
-    let { size } = this.state;
-    let arrData = this.state.dat;
+    let { size, searchTarget, dat } = this.state;
+    const { placeholder } = this.props;
     return (
       <div className="select-custom">
         <input
           type="text"
-          onChange={this.handleSearch}
+          value={searchTarget}
+          onChange={this.handleSearch.bind(this)}
           onFocus={this.onFocus}
           onBlur={this.blur}
+          placeholder={placeholder}
         />
         <select
           size={size}
@@ -75,12 +75,13 @@ class Select extends Component {
           onFocus={this.onFocus}
           onBlur={this.blur}
           onChange={this.handleChange.bind(this)}
+          onClick={this.handleChange.bind(this)}
         >
-          <option value="Select Value" defaultValue disabled>
-            Select Value
+          <option value={placeholder} defaultValue disabled>
+            {placeholder}
           </option>
           {/* Сюда должны вставлятся опции при Render */}
-          {this.optionInject(arrData)}
+          {this.optionInject(dat)}
         </select>
       </div>
     );

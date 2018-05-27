@@ -1,3 +1,4 @@
-.select-custom select {
-  width: calc(100% - 8px);
+.select-custom > * {
+  width: calc(100% - 9px);
+  box-sizing: border-box;
 }
