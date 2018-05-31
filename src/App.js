@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 //component
+import { connect } from "react-redux";
+
 import Checkbox from "./component/Checkbox";
 import Input from "./component/Input";
 import Select from "./component/Select";
@@ -10,13 +12,29 @@ class App extends Component {
     super(props);
 
     setInterval(() => {
+      //***********
+      let { revers, bgct } = this.state;
+
+      if (revers) {
+        bgct = bgct + 4;
+        revers = bgct < 240 ? true : false;
+      } else {
+        bgct = bgct - 4;
+        revers = bgct > 4 ? false : true;
+      }
+
+      //***********
       this.setState({
-        currentDate: getDate()
+        currentDate: getDate(),
+        bgct: bgct,
+        revers: revers
       });
     }, 1000);
 
     this.state = {
-      currentDate: getDate()
+      currentDate: getDate(),
+      bgct: 0,
+      revers: true
     };
   }
   componentWillUnmount() {
@@ -33,6 +51,8 @@ class App extends Component {
   newSelectValue = val => console.log(val);
 
   render() {
+		console.log(this.props);
+		
     const options = {
       // eslint-disable-next-line
       regExp: /^(([^<>()\[\]\/\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -42,13 +62,20 @@ class App extends Component {
     };
     const optionSelect = {
       size: 10,
-	  dat: dat,
-	  placeholder: "Select Value",
+      dat: dat,
+      placeholder: "Select Value",
       endSelect: this.newSelectValue
+    };
+    let { revers } = this.state;
+    let bgct = revers ? 255 : 0;
+    let backgroundColor = {
+      backgroundColor: `rgb(${bgct}, ${bgct}, ${bgct})`,
+      transition: `background-color 60s`
     };
     return (
       <div className="App">
-        <form onSubmit={this.sendForm.bind(this)}>
+			
+        <form onSubmit={this.sendForm.bind(this)} style={backgroundColor}>
           <div>{this.state.currentDate}</div>
           <div>Register</div>
           <input className="app-email" placeholder="Email" type="email" />
@@ -72,7 +99,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+		time: state.time.currentTime,
+		key: state.test.name
+  };
+};
+
+export default connect(mapStateToProps)(App);
 
 function getDate() {
   var data = new Date();
